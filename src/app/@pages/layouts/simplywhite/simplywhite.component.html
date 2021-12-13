@@ -1,0 +1,153 @@
+<!-- WRAP LAYOUT IF BOXED -->
+<div class="container" *ngIf="_boxed; else basicLayoutBlock">
+  <ng-container *ngTemplateOutlet="contentTpl"></ng-container>
+</div>
+<ng-template #basicLayoutBlock>
+  <ng-container *ngTemplateOutlet="contentTpl"></ng-container>
+</ng-template>
+<!-- YOUR LAYOUT CONTENT GOES INSIDE HERE -->
+<ng-template #contentTpl>
+  <!-- PAGE SIDEBAR -->
+  <pg-sidebar>
+    <ng-template #sideBarOverlay>
+      <div class="row">
+        <div class="col-xs-6 no-padding">
+          <a href="javascript:void(0)" class="p-l-40"><img src="assets/img/demo/social_app.svg" alt="socail">
+          </a>
+        </div>
+        <div class="col-xs-6 no-padding">
+          <a href="javascript:void(0)" class="p-l-10"><img src="assets/img/demo/email_app.svg" alt="socail">
+          </a>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-6 m-t-20 no-padding">
+          <a href="javascript:void(0)" class="p-l-40"><img src="assets/img/demo/calendar_app.svg" alt="socail">
+          </a>
+        </div>
+        <div class="col-xs-6 m-t-20 no-padding">
+          <a href="javascript:void(0)" class="p-l-10"><img src="assets/img/demo/add_more.svg" alt="socail">
+          </a>
+        </div>
+      </div>
+    </ng-template>
+    <ng-template #sideBarHeader>
+      <img src="assets/img/logo_blue_2x.png" pgRetina src2x="assets/img/logo_blue_2x.png" alt="logo" class="brand sideBarLogo" >
+    </ng-template>
+    <ng-template #menuItems>
+      <pg-menu-items [Items]="menuLinks">
+      </pg-menu-items>
+    </ng-template>
+  </pg-sidebar>
+  <!-- PAGE CONTAINER -->
+  <page-container>
+    <pg-header [boxed]="_boxed">
+      <!-- START MOBILE SIDEBAR TOGGLE -->
+      <div class="breadcrumbContent">
+        <div class="row" >
+          <a href="javascript:void(0);" class="btn-icon-link toggle-sidebar marginLeftToogleOpen" (click)="toggleMobileSidebar()">
+            <i class="pg-icon">menu</i>
+          </a>
+          <pg-breadcrumb></pg-breadcrumb>
+        </div>
+      </div>     
+
+      <!-- END MOBILE SIDEBAR TOGGLE -->
+      <div class="d-flex align-items-center">
+        <!-- START EMAIL MOBILE TOGGLE -->
+        <a href="javascript:void(0);" class="toggle-secondary-sidebar align-items-center"
+          (click)="toggleSecondarySideBar()" *ngIf="_layoutOption === 'email'">
+          <span class="d-flex align-items-center">
+            Inbox <span class="text-info">(12)</span> <span class="pg-icon">drop_down</span>
+          </span>
+        </a>
+        <!-- END EMAIL MOBILE TOGGLE -->
+         <!--<div class="brand" [class.d-none]="_layoutOption === 'email'" [class.d-xl-block]="_layoutOption === 'email'"
+          [class.d-lg-block]="_layoutOption === 'email'">
+          <img src="assets/img/logo_blue.png" alt="logo" pgRetina src1x="assets/img/logo_blue.png"
+            src2x="assets/img/logo_blue_2x.png" width="78" height="22">
+        </div>-->
+        <!--<a href="#" class="btn btn-link text-primary m-l-20 d-none d-lg-inline-flex d-xl-inline-flex">Add New Item</a>
+        <a href="javascript:void(0)" class="search-link d-none d-lg-block d-xl-block" (click)="openSearch($event)"><i
+            class="pg-icon">search</i>Type anywhere to <span class="bold">search</span></a>-->
+      </div>
+      <div class="d-flex align-items-center">
+        <!-- START NOTIFICATION LIST -->
+
+        <!-- END NOTIFICATIONS LIST -->
+        <!-- START User Info-->
+        <div class="pull-left p-r-10 fs-14 font-heading d-lg-inline-block d-none m-l-20">
+          <span class="semi-bold">Welcome&nbsp;</span> <span class="text-color">{{_UserEntities.userName}}</span>
+        </div>
+        <div class="dropdown pull-right d-lg-block d-none" dropdown>
+          <button class="profile-dropdown-toggle" type="button" dropdownToggle id="profileDropdown"
+            aria-label="profile dropdown">
+            <span class="thumbnail-wrapper d32 circular inline">
+              <img src="assets/img/usuario.png" alt="" pgRetina src1x="assets/img/usuario.png"
+                src2x="assets/img/usuario.png" width="32" height="32">
+            </span>
+          </button>
+          <div class="dropdown-menu dropdown-menu-right profile-dropdown" *dropdownMenu role="menu">
+            <a href="#" class="dropdown-item"><span>Signed in as <br /><b>{{_UserEntities.userName}}</b></span></a>
+            <div class="dropdown-divider"></div>
+            <!--<a href="#" class="dropdown-item">Your Profile</a>
+            <a href="#" class="dropdown-item">Your Activity</a>
+            <a href="#" class="dropdown-item">Your Archive</a>
+            <div class="dropdown-divider"></div>
+            <a href="#" class="dropdown-item">Features</a>
+            <a href="#" class="dropdown-item">Help</a>
+            <a href="#" class="dropdown-item">Settings</a> -->
+            <a href="#" (click)="LogOut()" class="dropdown-item">Logout</a>
+            <div class="dropdown-divider"></div>
+            <span class="dropdown-item fs-12 hint-text">Last edited by David<br />on Friday at 5:27PM</span>
+          </div>
+        </div>
+        <!-- END User Info-->
+        <a href="javascript:void(0)" class="hidden header-icon btn-icon-link m-l-5 sm-no-margin d-inline-block btn-icon-link"
+          (click)="openQuickView($event)">
+          <i class="pg-icon">menu_add</i>
+        </a>
+      </div>
+    </pg-header>
+    <div class="page-content-wrapper {{_pageContainerClass}}">
+      <!-- START PAGE CONTENT -->
+      <div class="content {{_contentClass}}">
+        <router-outlet></router-outlet>
+      </div>
+      <!-- END PAGE CONTENT -->
+      <!-- START COPYRIGHT -->
+
+      <!--       
+      <ng-template [ngIf]="_footer">
+        <div class=" container-fluid container-fixed-lg footer">
+          <div class="copyright sm-text-center">
+            <p class="small no-margin pull-left sm-pull-reset">
+              <span class="hint-text">Copyright &copy; 2017</span>&nbsp;<span class="font-montserrat">REVOX</span>.
+              <span class="hint-text">All rights
+                reserved.</span> <span class="sm-block"><a class="m-l-10 m-r-10" href="javascript:void(0)">Terms of
+                  use</a> <span class="muted">|</span> <a class="m-l-10" href="javascript:void(0)">Privacy
+                  Policy</a></span>
+            </p>
+
+            <p class="small no-margin pull-right sm-pull-reset">
+              Hand-crafted <span class="hint-text">&amp; made with Love</span>
+            </p>
+
+            <div class="clearfix">
+            </div>
+          </div>
+        </div> -->
+        <!-- END COPYRIGHT -->
+      <!--</ng-template>  -->      
+
+      
+
+
+
+    </div>
+  </page-container>
+  <!-- QUICKSEARCH
+  <app-search-overlay></app-search-overlay> -->
+  <!-- QUICKVIEW 
+  <app-quickview></app-quickview>-->
+</ng-template>

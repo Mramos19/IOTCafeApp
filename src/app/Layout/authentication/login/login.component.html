@@ -1,0 +1,84 @@
+<div class="login-wrapper ">
+	<!-- START Login Background Pic Wrapper-->
+	<div class="bg-pic">
+		<!-- START Background Pic-->
+		<div class="img-holder"  ([ngStyle])="{'background':'url(assets/img/demo/new-york-city-buildings-sunrise-morning-hd-wallpaper.jpg)'}"></div>
+		<!-- START Background Caption-->
+		<div class="bg-caption pull-bottom sm-pull-bottom text-white p-l-20 m-b-20">
+			<h2 class="semi-bold text-white">
+				Demetech Production Scan</h2>
+
+			<p class="small">
+				images Displayed are solely for representation purposes only, All work copyright of respective owner, otherwise © 2020 Demetech.
+			</p>
+		</div>
+		<!-- END Background Caption-->
+	</div>
+	<!-- END Login Background Pic Wrapper-->
+	<!-- START Login Right Container-->
+	<div class="login-container bg-white">
+		<div class="p-l-50 m-l-20 p-r-50 m-r-20 p-t-50 m-t-30 sm-p-l-15 sm-p-r-15 sm-p-t-40">
+			<img src="assets/img/demetech-logo.png" alt="logo" pgRetina src1x="assets/img/demetech-logo.png" src2x="assets/img/demetech-logo.png"
+			     width="220">
+
+			<p class="p-t-35">Sign in with IOT Cafe Account</p>
+			<!-- START Login Form -->
+			<form  class="p-t-15" [formGroup]="_FormLogin" autocomplete="off">
+				<!-- START Form Control-->
+				<div pgFormGroupDefault class="form-group form-group-default" [class.has-error]="this._FormLogin.invalid && (this._FormLogin.controls['userName'].dirty || this._FormLogin.controls['userName'].touched)">
+					<label>Login</label>
+					<input type="text" id="userName" name="userName" formControlName="userName"  required  placeholder="User Name" class="form-control">
+				</div>
+				<div *ngIf="_FormLogin.invalid && (this._FormLogin.controls['userName'].dirty || _FormLogin.controls['userName'].touched)" >
+					<label *ngIf="this._FormLogin.controls['userName'].invalid"  class="error" >This field is required.</label>
+				</div>
+				<!-- END Form Control-->
+				<!-- START Form Control-->
+				<div pgFormGroupDefault class="form-group form-group-default" [class.has-error]="this._FormLogin.invalid && (this._FormLogin.controls['password'].dirty || this._FormLogin.controls['password'].touched)">
+					<label>Password</label>
+					<input type="password" class="form-control" formControlName="password" placeholder="Credentials" id="password" name="password"  required>
+				</div>
+				<div *ngIf="this._FormLogin.invalid && (this._FormLogin.controls['password'].dirty || this._FormLogin.controls['password'].touched)" >
+					<label *ngIf="this._FormLogin.controls['password'].invalid"  class="error" >This field is required.</label>
+				</div>
+				<!-- START Form Control-->
+				<div class="row">
+					<div class="col-md-6 no-padding sm-p-l-10">
+						<div class="form-check ">
+							<input type="checkbox" value="1" id="checkbox1">
+							<label for="checkbox1">Keep Me Signed in</label>
+						</div>
+					</div>
+					<div class="col-md-6 d-flex align-items-center justify-content-end">
+						<a href="javascript:void(0)" class="text-info small">Help? Contact Support</a>
+					</div>
+				</div>
+				<!-- END Form Control-->
+				<button class="btn btn-primary btn-cons m-t-10" type="button" (click)="onSubmit()" [disabled]="this._FormLogin.invalid" [class.disabled]="this._FormLogin.invalid">Sign in</button>
+			</form>
+			<!--END Login Form-->
+			<!--<div class="pull-bottom sm-pull-bottom">
+				<div class="m-b-30 p-r-80 sm-m-t-20 sm-p-r-15 sm-p-b-20 clearfix">
+					<div class="col-sm-3 col-md-2 no-padding">
+						<img alt="" class="m-t-5" pgRetina src1x="assets/img/demo/pages_icon.png"
+						     src2x="assets/img/demo/pages_icon_2x.png" height="60"
+						     src="assets/img/demo/pages_icon.png" width="60">
+					</div>
+					<div class="col-sm-9 no-padding m-t-10">
+						<p>
+							
+							<small>
+								Create a pages account. If you have a facebook account, log into it for this
+								process. Sign in with <a href="javascript:void(0)" class="text-info">Facebook</a> or <a href="javascript:void(0)"
+								                                                                       class="text-info">Google</a>
+							</small>
+							
+							
+						</p>
+					</div>
+				</div>
+			</div>-->
+		</div>
+	</div>
+	<!-- END Login Right Container-->
+</div>
