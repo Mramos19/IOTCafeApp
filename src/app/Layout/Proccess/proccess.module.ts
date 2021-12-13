@@ -9,11 +9,13 @@ import { KitRoomReleasedComponent } from './kit-room-released/kit-room-released.
 
 //Routes
 import { ProccessRouterModule } from "./proccess.routing";
+import { TestComponent } from './test/test.component';
 
 @NgModule({
 
     declarations: [
-        KitRoomReleasedComponent
+        KitRoomReleasedComponent,
+        TestComponent
     ],
     imports: [
         CommonModule, 

@@ -3,6 +3,7 @@ import { KitRoomReleasedComponent } from "./kit-room-released/kit-room-released.
 
 //Guards
 import { AuthenticationGuard } from "../../Guards/authentication.guard";
+import { TestComponent } from "./test/test.component";
 
 
 export const ProccessRouterModule: Routes = [
@@ -12,6 +13,11 @@ export const ProccessRouterModule: Routes = [
             {
                 path: 'Kit',
                 component: KitRoomReleasedComponent,
+                canActivate: [AuthenticationGuard]
+            },
+            {
+                path: 'Test',
+                component: TestComponent,
                 canActivate: [AuthenticationGuard]
             }
         ]
